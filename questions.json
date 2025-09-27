@@ -1,0 +1,8 @@
+{
+    "questions": [
+      { "id": 1, "text": "What sports do you like?", "type": "text" },
+      { "id": 2, "text": "Where do you live?", "type": "text" },
+      { "id": 2, "text": "Are you at Dauphine University?", "type": "boolean" }
+    ]
+  }
+  
