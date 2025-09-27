@@ -19,18 +19,36 @@ refont/
 
 ## 🚀 Quick Start
 
-1. **Configure API Key**:
+### **Option 1: Automated Setup**
+```bash
+# Run the setup script
+./setup.sh
+
+# Start the server
+python3 start.py
+```
+
+### **Option 2: Manual Setup**
+1. **Install Dependencies**:
    ```bash
-   # Edit config.env
-   OPENAI_API_KEY=your_api_key_here
+   pip3 install -r requirements.txt
    ```
 
-2. **Start the Server**:
+2. **Configure API Key**:
+   ```bash
+   # Copy template
+   cp .env.example config.env
+   
+   # Edit config.env and add your OpenAI API key
+   OPENAI_API_KEY=your_actual_api_key_here
+   ```
+
+3. **Start the Server**:
    ```bash
    python3 start.py
    ```
 
-3. **Open Browser**:
+4. **Open Browser**:
    - Go to http://localhost:5001
    - Allow microphone access
    - Start the questionnaire
