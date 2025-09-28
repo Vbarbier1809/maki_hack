@@ -56,18 +56,22 @@ python3 start.py
 ## ✨ Features
 
 - **Voice-to-Voice**: Speech recognition and text-to-speech
-- **5-Second Delay**: Natural pause between greeting and first question
+- **3-Second Delay**: Natural pause between greeting and first question
+- **Auto Silence Detection**: Automatically stops recording after 3 seconds of silence
+- **Seamless Flow**: No manual stop required - just speak and pause
 - **Auto Analysis**: Automatic ChatGPT analysis after completion
 - **Clean Interface**: No duplicate messages
 - **File Management**: Automatic cleanup of old files
 
 ## 🎯 How It Works
 
-1. **Greeting**: Agent says "Hi, I have some questions I would like you to answer."
-2. **5-Second Pause**: Natural delay for user processing
-3. **Questions**: Agent asks questions one by one
-4. **Analysis**: Automatic ChatGPT analysis when complete
-5. **Save**: Answers saved to timestamped JSON files
+1. **Greeting**: Agent says "Hi! I have some questions for you."
+2. **3-Second Pause**: Natural delay for user processing
+3. **Questions**: Agent asks questions one by one with TTS
+4. **Auto Recording**: Click once to start, speak, then 3s silence auto-stops
+5. **Seamless Flow**: No manual stop needed - just speak and pause
+6. **Analysis**: Automatic ChatGPT analysis when complete
+7. **Save**: Answers saved to timestamped JSON files
 
 ## 🔧 Technical Details
 

@@ -342,7 +342,7 @@ def save_completed_questions(completed_json, output_file="completed_questions.js
 # ---------- Routes ----------
 @app.route('/')
 def index():
-    return render_template('voice_chat.html')
+    return render_template('voice_chat_simple.html')
 
 @app.route('/tts', methods=['POST'])
 def tts_endpoint():
@@ -398,10 +398,17 @@ def on_connect():
         "questions": load_questions()
     }
 
-    emit('status', {'message': 'Connected to voice questionnaire'})
+    emit('status', {'message': 'Connected to voice questionnaire. Click "Start Recording" to begin.'})
 
+@socketio.on('start_questionnaire')
+def on_start_questionnaire():
+    """Handle questionnaire start request."""
+    sid = request.sid
+    if sid not in sessions:
+        return
+    
     # Greeting first
-    greeting = "Hi, I have some questions I would like you to answer."
+    greeting = "Hi! I have some questions for you."
     emit('ai_response', {
         'text': greeting,
         'timestamp': datetime.now().strftime("%H:%M:%S")
@@ -410,13 +417,13 @@ def on_connect():
     if audio:
         emit('audio_response', {'audio': audio})
 
-    # Send first question after greeting (client will handle the 5-second delay)
+    # Send first question after greeting (client will handle the 2-second delay)
     q = current_question(sessions[sid])
     if q:
         emit('first_question', {
             'text': q["text"],
             'timestamp': datetime.now().strftime("%H:%M:%S"),
-            'delay': 5000  # 5 second delay in milliseconds
+            'delay': 2000  # 2 second delay in milliseconds
         })
     else:
         emit('ai_response', {
@@ -476,6 +483,9 @@ def on_audio_data(data):
             audio = tts(response_text)
             if audio:
                 emit('audio_response', {'audio': audio})
+            
+            # Send question ready signal for next question
+            emit('question_ready', {'question_id': next_q["id"]})
         else:
             # Questionnaire completed - finish and trigger analysis
             thanks = "Thanks for your answers. We are done."

@@ -1,8 +1,11 @@
 {
     "questions": [
       { "id": 1, "text": "What sports do you like?", "type": "text" },
-      { "id": 2, "text": "Where do you live?", "type": "text" },
-      { "id": 2, "text": "Are you at Dauphine University?", "type": "boolean" }
+      { "id": 2, "text": "Tell me about you education background", "type": "text" },
+      { "id": 3, "text": "What age do you like?", "type": "Number" },
+      { "id": 4, "text": "Give me your email", "type": "email" },
+      { "id": 5, "text": "Are you at Dauphine University?", "type": "boolean" },
+      { "id": 6, "text": "tell me anything you want", "type": "email" }
     ]
   }
   

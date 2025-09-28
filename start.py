@@ -41,6 +41,21 @@ def main():
             pass
     print("✅ Cleanup completed!")
     
+    # Update assistant service with latest answers
+    print("\n🔄 Updating assistant service with latest answers...")
+    try:
+        result = subprocess.run([sys.executable, "update_assistant_answers.py"], 
+                              capture_output=True, text=True, check=False)
+        if result.returncode == 0:
+            print("✅ Assistant service updated successfully!")
+        else:
+            print("⚠️  Assistant service update had issues, but continuing...")
+            if result.stderr:
+                print(f"   Error: {result.stderr.strip()}")
+    except Exception as e:
+        print(f"⚠️  Could not update assistant service: {e}")
+        print("   Continuing with application startup...")
+    
     # Start application
     print("\n🌐 Starting application on http://localhost:5001")
     print("🎤 Make sure your microphone and speakers are working!")
